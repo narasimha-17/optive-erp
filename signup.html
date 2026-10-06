@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up | Optiva ERP</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-rupee" viewBox="0 0 24 24"><g fill="none" stroke="var(--ic)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5h12.5M6 9.5h12.5M6.5 4.5c6.5 0 8.5 2 8.5 5s-2.6 5-8.5 5l8 6.5"/></g></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><g fill="var(--ic)"><rect x="3" y="12" width="4.8" height="8.5" rx="1.4"/><rect x="9.6" y="3.5" width="4.8" height="17" rx="1.4"/><rect x="16.2" y="8" width="4.8" height="12.5" rx="1.4"/></g></symbol>
+  <symbol id="i-o" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#fff"/><image href="mark.png" x="3.6" y="3.6" width="16.8" height="16.8"/></symbol>
+</defs></svg>
+<div class="strip"></div>
+
+<main class="auth-wrap">
+
+  <aside class="auth-side">
+    <a href="index.html" class="logo-chip" aria-label="Optiva ERP home"><img src="logo.png" alt="Optiva ERP" width="1000" height="220"></a>
+
+    <div class="side-body">
+      <div class="side-kicker">Get started</div>
+      <h1>Bring your whole business together.</h1>
+      <div class="rule"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+      <div class="points">
+        <div class="pt"><span class="hexb" style="--g1:#2fd0c0;--g2:#ffd23f"><b>01</b></span><div><h4>Set up in minutes</h4><p>Start with the modules your team needs today.</p></div></div>
+        <div class="pt"><span class="hexb" style="--g1:#ff5a5f;--g2:#ffc93c"><b>02</b></span><div><h4>Grows with you</h4><p>Add finance, procurement and HR as you scale.</p></div></div>
+        <div class="pt"><span class="hexb" style="--g1:#8a3fd1;--g2:#1fc8c0"><b>03</b></span><div><h4>Secure by design</h4><p>Role-based access and approval workflows built in.</p></div></div>
+        </div>
+    </div>
+
+    <div class="side-foot">© 2026 Agentosys. Optiva ERP.</div>
+
+    <div class="coin-wrap coin-a"><div class="coin t-gold" data-t="18" data-icon="i-rupee"></div></div>
+    <div class="coin-wrap coin-b"><div class="coin t-violet" data-t="22" data-icon="i-o"></div></div>
+    <div class="coin-wrap coin-c"><div class="coin t-pink" data-t="14" data-icon="i-chart"></div></div>
+  </aside>
+
+  <section class="auth-main">
+    <a class="back" href="index.html">← Back to home</a>
+    <div class="auth-card">
+      <span class="hexb badge" style="--g1:#ff5a5f;--g2:#ffc93c"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#3b3b44" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:relative"><circle cx="10" cy="8" r="3.6"/><path d="M3.5 20c.5-3.6 3-5.5 6.5-5.5M18 14v6M15 17h6"/></svg></span>
+      <div class="head">
+        <h2>Create your <em>account</em></h2>
+        <p class="sub">Start running your business in one place.</p>
+      </div>
+
+      <form data-auth="signup" novalidate>
+      <div class="field">
+        <label for="name">Full name</label>
+        <div class="input"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.6-4 3.5-6 7.5-6s6.9 2 7.5 6"/></svg><input id="name" name="name" type="text" placeholder="Alex Morgan" autocomplete="name" ></div>
+        <p class="msg" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <div class="input"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5 12 13l8.5-5.5"/></svg><input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" ></div>
+        <p class="msg" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <div class="input"><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 20.5v-4h4v4"/></svg><input id="company" name="company" type="text" placeholder="Your company name" autocomplete="organization" ></div>
+        <p class="msg" role="alert"></p>
+      </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input"><svg class="ic" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><input id="password" name="password" type="password" placeholder="Create a password" autocomplete="new-password"><button type="button" class="eye" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+          <div class="meter" id="meter"><i></i><i></i><i></i><i></i></div>
+          <div class="meter-label" id="meterLabel"></div>
+          <p class="msg" role="alert"></p>
+        </div>
+        <div class="field">
+          <label class="chk"><input type="checkbox" name="terms"><span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</span></label>
+          <p class="msg" role="alert"></p>
+        </div>
+        <button class="submit" type="submit">Create account</button>
+      <div class="divider">or continue with</div>
+      <div class="socials">
+        <button type="button" class="social"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M21.6 12.23c0-.68-.06-1.33-.17-1.96H12v3.71h5.39a4.6 4.6 0 0 1-2 3.02v2.5h3.23c1.89-1.74 2.98-4.3 2.98-7.27z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.62-2.42l-3.23-2.5c-.9.6-2.04.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H3.07v2.58A9.99 9.99 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.41 13.92A6 6 0 0 1 6.1 12c0-.67.11-1.31.31-1.92V7.5H3.07a10 10 0 0 0 0 9z"/><path fill="#EA4335" d="M12 5.96c1.47 0 2.79.5 3.83 1.5l2.87-2.87C16.95 2.99 14.7 2 12 2 8.1 2 4.73 4.24 3.07 7.5l3.34 2.58C7.2 7.72 9.4 5.96 12 5.96z"/></svg>Google</button>
+        <button type="button" class="social"><svg viewBox="0 0 24 24"><path fill="#F25022" d="M3 3h8.5v8.5H3z"/><path fill="#7FBA00" d="M12.5 3H21v8.5h-8.5z"/><path fill="#00A4EF" d="M3 12.5h8.5V21H3z"/><path fill="#FFB900" d="M12.5 12.5H21V21h-8.5z"/></svg>Microsoft</button>
+      </div>
+      <p class="note" id="note"></p>
+      </form>
+
+      <div class="done">
+        <span class="hexb"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <h2>Welcome, <em id="doneName">there</em></h2>
+        <p>Your Optiva account is ready. Check your inbox to verify your email.</p>
+        <a class="submit" href="index.html">Continue</a>
+      </div>
+    </div>
+    <p class="alt">Already have an account? <a href="login.html">Log in</a></p>
+  </section>
+
+</main>
+
+<script src="auth.js"></script>
+</body>
+</html>

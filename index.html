@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optiva ERP | A new era of business management</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="Optiva ERP connects finance, sales, procurement, inventory, people and operations in one platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a14;
+  --muted:#5f6173;
+  --line:#e8e6f3;
+  --soft:#f4f2fd;
+  --violet:#8f7bea;
+  --violet-d:#5b43c9;
+  --night:#0f0a26;
+  --pink:#ff4f9a;
+  --white:#fff;
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);background:#fff;
+  font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:Outfit,Inter,sans-serif;margin:0}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+
+/* ---------- Nav ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  transition:background .3s,box-shadow .3s;
+}
+header.scrolled{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-family:Outfit;font-weight:700;font-size:25px;letter-spacing:-.5px}
+.brand img{height:50px;width:auto;display:block}
+.nav-links{display:flex;gap:44px;font-size:14px;font-weight:500}
+.nav-links a{position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--violet);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:500}
+.pill{background:var(--soft);padding:11px 22px;border-radius:12px;transition:background .2s}
+.pill:hover{background:#e7e2fb}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:max(100vh,780px);overflow:hidden;background:#fff}
+.hero-text{
+  position:relative;z-index:5;text-align:center;
+  padding-top:min(22vh,190px);max-width:880px;margin:auto;padding-inline:24px;
+}
+.hero h1{
+  font-size:clamp(44px,6vw,76px);line-height:1.04;font-weight:500;letter-spacing:-.035em;
+}
+.hero p{
+  margin:22px auto 0;max-width:520px;font-size:clamp(15px,1.4vw,18px);
+  line-height:1.5;font-weight:500;color:#1c1c28;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:48px;padding:0 28px;border-radius:12px;
+  background:#000;color:#fff;font-size:15px;font-weight:500;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(60,40,150,.28)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.hero .btn{margin-top:34px}
+
+.ribbon{position:absolute;left:0;right:0;bottom:0;width:100%;height:70.9%;z-index:1;pointer-events:none}
+
+/* 3D scene */
+.scene{position:absolute;inset:0;z-index:3;pointer-events:none}
+.coin-wrap{
+  position:absolute;
+  width:var(--d);height:var(--d);
+  perspective:900px;
+}
+.coin{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.coin .slice,.coin .face{position:absolute;inset:0;border-radius:50%}
+.coin .slice{background:var(--rim)}
+.coin .face{
+  backface-visibility:hidden;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.75),rgba(255,255,255,0) 38%),
+    radial-gradient(circle at 50% 50%,var(--c1),var(--c2) 100%);
+  display:grid;place-items:center;
+}
+.coin .face::before{ /* engraved rim */
+  content:"";position:absolute;inset:6%;border-radius:50%;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 3px 8px rgba(0,0,0,.18);
+}
+.coin .face::after{ /* gloss */
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(125deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 38%,rgba(255,255,255,0) 70%,rgba(255,255,255,.22) 100%);
+}
+.coin .face svg{width:56%;height:56%;position:relative;z-index:1;filter:drop-shadow(0 2px 1.5px rgba(0,0,0,.28)) drop-shadow(0 -1px 0 rgba(255,255,255,.45));transform:rotate(var(--roll,0deg))}
+.coin .back{transform:rotateY(180deg)}
+.coin .back svg{display:none}
+
+.t-gold {--c1:#f6f2a0;--c2:#cbc654;--rim:#b4b043;--ic:#f26eb4}
+.t-pink {--c1:#ff74b0;--c2:#e22d7d;--rim:#b52167;--ic:#ff8bd6}
+.t-blush{--c1:#fde3f6;--c2:#e8a1dc;--rim:#cf86c4;--ic:#d9669c}
+.t-violet{--c1:#c21cf0;--c2:#3b0b7e;--rim:#6a14a8;--ic:#efe38c}
+.t-glass{--c1:#fff;--c2:#b9a8f7;--rim:#d6d3ee;--ic:#fff}
+.t-glass .face{
+  background:
+    conic-gradient(from 20deg at 50% 50%,#7dd3fc,#a78bfa,#f472b6,#c4b5fd,#60a5fa,#a78bfa,#7dd3fc);
+}
+.t-glass .face::before{inset:9%;box-shadow:inset 0 0 40px rgba(255,255,255,.8),inset 0 0 0 3px rgba(255,255,255,.6)}
+
+/* coin placement (desktop) */
+.c-disc  {--base:250px;left:3%;top:9%}
+.c-violet{--base:210px;right:2%;top:19%}
+.c-gold  {--base:160px;left:26%;top:55%}
+.c-blush {--base:180px;left:62%;top:47%}
+.c-pink  {--base:160px;left:45%;top:68%}
+.c-small {--base:110px;left:15%;top:74%}
+.coin-wrap{--k:1;--d:calc(var(--base) * var(--k))}
+
+/* entrance */
+.rise{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.rise.d1{animation-delay:.1s}.rise.d2{animation-delay:.25s}.rise.d3{animation-delay:.4s}
+@keyframes rise{to{opacity:1;transform:none}}
+.coin-wrap{opacity:0;animation:fadein 1.2s ease .3s forwards}
+@keyframes fadein{to{opacity:1}}
+.coin-wrap.phys{opacity:1;animation:none;left:0!important;top:0!important;right:auto!important;bottom:auto!important;will-change:transform;filter:drop-shadow(0 14px 12px rgba(55,35,140,.2))}
+
+/* ---------- Sections ---------- */
+section{padding:110px 0}
+.label{
+  display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--violet-d);background:var(--soft);padding:7px 14px;border-radius:99px;margin-bottom:18px;
+}
+h2{font-size:clamp(32px,4vw,52px);font-weight:500;line-height:1.1;letter-spacing:-.03em;max-width:760px}
+.intro{color:var(--muted);font-size:18px;max-width:620px;margin-top:16px}
+.center{text-align:center}.center h2,.center .intro{margin-inline:auto}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* Modules */
+.modules{background:#fff}
+.mod-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.mod-head{position:sticky;top:120px}
+.rule{display:flex;gap:6px;margin-top:30px}
+.rule i{width:38px;height:3px;border-radius:3px;display:block}
+.mod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:64px 40px;padding-top:36px}
+.mcard{
+  position:relative;padding:28px 26px 28px;min-height:150px;border-radius:24px;
+  border:1.5px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#4a4a52 0%,#9a9aa3 38%,#e3e3e8 70%) border-box;
+  transition:transform .35s,box-shadow .35s;
+}
+.mcard:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(60,40,150,.14)}
+.mcard h3{font-size:18px;font-weight:700;margin:0 0 6px;letter-spacing:-.01em;padding-right:56px}
+.mcard p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+.hex{
+  position:absolute;top:-38px;right:-14px;width:76px;height:84px;display:grid;place-items:center;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:linear-gradient(180deg,var(--g1),var(--g2));
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.hex::before{
+  content:"";position:absolute;inset:7px;background:#fff;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+}
+.hex b{position:relative;font-family:Outfit;font-size:25px;font-weight:700;color:#3b3b44}
+.mcard:hover .hex{transform:rotate(60deg) scale(1.06)}
+.mcard:hover .hex b{display:inline-block;transform:rotate(-60deg)}
+/* Platform (sky) */
+.sky{
+  position:relative;overflow:hidden;color:#fff;padding:120px 0 130px;
+  background:linear-gradient(180deg,#4d8df4 0%,#2f74e8 48%,#3a82ef 100%);
+}
+.sky .clouds{position:absolute;left:0;right:0;bottom:0;width:100%;height:560px;pointer-events:none}
+.sky .arc{
+  position:absolute;left:50%;top:-520px;width:1180px;height:1180px;margin-left:-590px;border-radius:50%;
+  background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1px rgba(255,255,255,.0);pointer-events:none;
+}
+.sky .arc::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.85);
+  -webkit-mask:linear-gradient(115deg,#000 0%,#000 14%,transparent 30%);mask:linear-gradient(115deg,#000 0%,#000 14%,transparent 30%);
+}
+.sky-inner{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center}
+.sky-badge{
+  display:inline-flex;align-items:center;gap:10px;background:#fff;color:#1d3a78;
+  padding:8px 18px;border-radius:99px;font-size:13px;font-weight:500;box-shadow:0 8px 22px rgba(10,40,120,.18);
+}
+.sky-badge i{width:12px;height:12px;border-radius:50%;background:#2fd08c;box-shadow:0 0 0 3px rgba(47,208,140,.25)}
+.sky-badge b{font-weight:500;opacity:.7}
+.sky h2{
+  font-family:'Instrument Serif',Georgia,serif;font-weight:400;color:#fff;
+  font-size:clamp(38px,6.2vw,84px);line-height:1;letter-spacing:-.01em;max-width:900px;margin:30px auto 0;
+}
+.sky h2 em{font-style:italic}
+.sky-intro{max-width:600px;margin:26px auto 0;color:rgba(255,255,255,.85);font-size:18px;line-height:1.55;font-weight:300}
+.sky-cta{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+.pbtn{
+  display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 30px;border-radius:99px;
+  font-size:14px;font-weight:500;transition:transform .2s,box-shadow .2s,background .2s;
+}
+.pbtn.solid{background:#1a62ff;color:#fff;box-shadow:0 10px 26px rgba(10,50,170,.35)}
+.pbtn.line{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.85);color:#fff}
+.pbtn:hover{transform:translateY(-2px)}
+.pbtn.line:hover{background:rgba(255,255,255,.14)}
+
+.dash{margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:20px;width:100%}
+.gcard{
+  background:#fff;color:#0e1330;border-radius:22px;text-align:left;
+  box-shadow:0 0 0 6px rgba(255,255,255,.28),0 30px 60px rgba(15,50,150,.28);
+  animation:bob 7s ease-in-out infinite;
+}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.g-main{width:min(340px,100%);padding:18px 20px 16px}
+.g-top{display:flex;justify-content:space-between;align-items:center;font-size:11px}
+.g-top span{background:#f1f2f6;padding:5px 10px;border-radius:7px;color:#40465c;font-weight:500}
+.g-top svg{width:14px;height:14px;stroke:#40465c;fill:none;stroke-width:2;stroke-linecap:round}
+.g-body{display:grid;grid-template-columns:92px 1fr;gap:6px;margin-top:12px;align-items:start}
+.g-big{font-family:Outfit;font-size:25px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.g-sub{font-size:9px;color:#767c90;margin-top:3px}
+.g-sub em{font-style:normal;color:#1a62ff;margin-left:4px}
+.g-track{display:flex;align-items:center;gap:5px;font-size:10px;color:#1a62ff;font-weight:500;margin-top:16px}
+.g-track i{width:10px;height:10px;border-radius:50%;background:#1a62ff;display:block}
+.g-chart{position:relative}
+.g-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.g-chart .base{stroke:#d9dbe4;fill:none;stroke-width:1.6;stroke-linecap:round}
+.g-chart .live{stroke:#1a62ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2s cubic-bezier(.2,.7,.2,1) .3s}
+.in .g-chart .live{stroke-dashoffset:0}
+.g-months{display:flex;justify-content:space-between;font-size:6.5px;color:#9ba0b3;margin-top:6px;letter-spacing:.04em}
+.g-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;width:100%}
+.g-small{width:min(280px,100%);padding:18px 20px}
+.g-small h4{margin:0;font-size:13px;font-weight:600}
+.g-money{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-family:Outfit;font-size:24px;font-weight:600}
+.g-money em{font-style:normal;font-family:Inter;font-size:10px;background:#e3f6ec;color:#23935e;padding:3px 7px;border-radius:6px;font-weight:600}
+.g-date{text-align:center;font-size:9px;color:#8a8fa3;margin-top:2px}
+.g-spark{width:100%;height:56px;margin-top:10px;display:block}
+.g-small:nth-child(2){animation-delay:-3s}
+.g-donut{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:12px}
+.g-legend{display:grid;gap:12px;font-size:12px;font-weight:500}
+.g-legend span::before{content:"";display:inline-block;width:0}
+.dn{width:96px;height:96px;transform:rotate(-90deg);flex:none}
+.dn circle{fill:none;stroke-width:13;stroke-dasharray:0 100;transition:stroke-dasharray 1.6s cubic-bezier(.2,.7,.2,1) .4s}
+.in .dn .a{stroke-dasharray:30 70}
+.in .dn .b{stroke-dasharray:32 68}
+.in .dn .c{stroke-dasharray:38 62}
+
+.sky-steps{position:relative;margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;text-align:left}
+.sstep{display:flex;gap:14px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);color:#0e1330;border-radius:20px;padding:20px 22px;box-shadow:0 14px 34px rgba(15,50,150,.14)}
+.sstep h4{margin:0;font-size:16px}
+.sstep p{margin:3px 0 0;color:#585e74;font-size:14px;line-height:1.5}
+
+/* AI */
+.ai{position:relative;overflow:hidden;color:#fff;background:#07031a;min-height:720px;display:flex;align-items:center}
+.ai-bg{ /* purple sphere whose curved edge becomes the divider */
+  position:absolute;top:50%;right:calc(50% - 60px);width:1160px;height:1160px;margin-top:-580px;border-radius:50%;
+  background:linear-gradient(150deg,#6a4de0 0%,#8d78ea 42%,#b6a8ee 78%,#e4d3e6 100%);
+}
+.ai-bg::before{ /* soft glow behind the headline */
+  content:"";position:absolute;left:24%;top:30%;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.42),rgba(255,255,255,0) 68%);filter:blur(10px);
+}
+.ai-glow{position:absolute;right:6%;top:58%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(150,120,255,.55),transparent 70%);filter:blur(6px);animation:bob 7s ease-in-out infinite}
+.ai-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:80px 0}
+.ai-kicker{font-family:Outfit;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.ai h2{
+  font-family:Outfit;font-weight:600;color:#fff;margin:34px 0 0;text-transform:uppercase;
+  font-size:clamp(34px,4.4vw,60px);line-height:1.16;letter-spacing:-.005em;max-width:560px;
+}
+.ai-copy{margin-top:28px;max-width:430px;color:rgba(255,255,255,.88);font-weight:400;font-size:16px;line-height:1.7}
+
+.feats{display:grid;gap:34px;padding-left:10px}
+.feat{display:flex;align-items:center;gap:26px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.feat:nth-child(2){margin-left:46px}
+.feat:hover{transform:translateX(8px)}
+.feat .orb{
+  width:88px;height:98px;flex:none;display:grid;place-items:center;position:relative;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(180deg,var(--g1),var(--g2));
+  transition:transform .4s,filter .4s;
+}
+.feat .orb::before{content:"";position:absolute;inset:4px;background:radial-gradient(circle at 30% 25%,#1d1145,#0b0620 75%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.feat:hover .orb{filter:brightness(1.18) saturate(1.2);transform:rotate(-6deg)}
+.feat svg{position:relative;width:38px;height:38px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.feat h4{margin:0;font-family:Outfit;font-weight:600;font-size:23px;letter-spacing:-.005em}
+.feat p{margin:8px 0 0;color:#d9d2f2;font-weight:400;font-size:15.5px;line-height:1.55;max-width:300px}
+
+/* glass cubes */
+.cube-wrap{position:absolute;z-index:1;perspective:900px;width:var(--s);height:var(--s);pointer-events:none}
+.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(-32deg);animation:cubeturn 16s ease-in-out infinite alternate}
+@keyframes cubeturn{from{transform:rotateX(-24deg) rotateY(-48deg)}to{transform:rotateX(-18deg) rotateY(-14deg)}}
+.cube i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.28);display:block}
+.cube i:nth-child(1){transform:translateZ(calc(var(--s) / 2));background:linear-gradient(145deg,#8a76ea,#6c52d8)}
+.cube i:nth-child(2){transform:rotateY(180deg) translateZ(calc(var(--s) / 2));background:#5a40c4}
+.cube i:nth-child(3){transform:rotateY(90deg) translateZ(calc(var(--s) / 2));background:linear-gradient(160deg,#5f45cc,#7a62e0)}
+.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s) / 2));background:linear-gradient(160deg,#6e56dc,#4f37b8)}
+.cube i:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s) / 2));background:linear-gradient(145deg,#b9aaf4,#9a86ee)}
+.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s) / 2));background:#4a33ae}
+.cube-a{--s:150px;left:calc(50% - 330px);bottom:-30px}
+.cube-b{--s:100px;right:-18px;top:46px}
+.cube-b .cube{animation-duration:20s}
+
+/* Industries (pillars) */
+.pillars{margin-top:60px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:stretch}
+.pillar{
+  position:relative;min-height:450px;padding:0 20px 36px;border-radius:20px;overflow:hidden;cursor:pointer;
+  background:#f4f4f7;color:#5a5c68;outline:none;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s,background .45s,color .45s;
+}
+.pillar::before{ /* slanted inner panel */
+  content:"";position:absolute;inset:60px 20px 24px 0;background:#e8e8ee;
+  clip-path:polygon(0 0,100% 5%,100% 95%,0 100%);transition:background .45s;
+}
+.pillar > *{position:relative}
+.pillar .tab{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  margin:52px 14px 0 -20px;padding:6px 6px 6px 20px;min-height:58px;
+  background:#d3d3da;border-radius:0 99px 99px 0;color:#3d3f4b;
+  transition:background .45s,color .45s;
+}
+.pillar .tab b{font-family:Outfit;font-size:15px;line-height:1.15;font-weight:600}
+.pillar .tab i{
+  width:50px;height:56px;flex:none;display:grid;place-items:center;position:relative;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(180deg,var(--g1),var(--g2));
+}
+.pillar .tab i::before{content:"";position:absolute;inset:4px;background:#fff;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.pillar .tab svg{position:relative;width:22px;height:22px;fill:none;stroke:#3d3f4b;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .45s}
+.pillar h3{
+  margin:50px 0 0;text-align:center;font-family:Outfit;font-weight:700;font-size:32px;letter-spacing:-.01em;
+  text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px;color:#4d4f5b;transition:color .45s;
+}
+.pillar p{margin:38px 6px 0;text-align:center;font-size:14px;line-height:1.7;color:#6b6d7a;transition:color .45s}
+
+.pillar.active,.pillar:focus-visible{
+  background:linear-gradient(165deg,#9a86f0 0%,#6a4fe0 100%);transform:translateY(-10px);
+  box-shadow:0 30px 60px rgba(91,67,201,.35);
+}
+.pillar.active::before{background:rgba(255,255,255,.16)}
+.pillar.active .tab{background:#fff;color:#5b43c9}
+.pillar.active .tab svg{stroke:#6a4fe0}
+.pillar.active h3{color:#fff}
+.pillar.active p{color:rgba(255,255,255,.92)}
+
+/* CTA */
+.cta{padding:0 0 110px}
+.cta-box{
+  position:relative;overflow:hidden;text-align:center;color:#fff;
+  border-radius:36px;padding:96px 24px;
+  background:radial-gradient(circle at 20% 0%,#7c5cff 0%,transparent 50%),radial-gradient(circle at 90% 100%,#ff4f9a 0%,transparent 45%),#1a0f4a;
+}
+.cta-box h2{color:#fff;margin:0 auto}
+.cta-box .intro{color:#ddd6ff;margin:16px auto 32px}
+.cta-box .btn{background:#fff;color:var(--ink)}
+.cta-box .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cta-box .coin-wrap{opacity:1;animation:none}
+.cta-coin-l{--base:120px;left:6%;top:18%}
+.cta-coin-r{--base:150px;right:7%;bottom:12%}
+
+/* Footer */
+footer{background:#07041a;color:#9b97bb;padding:64px 0 26px}
+.f-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px}
+footer .brand{background:#fff;padding:10px 16px;border-radius:14px;display:inline-flex}
+footer .brand img{height:34px}
+footer p{font-size:14px;max-width:290px;margin:14px 0 0}
+footer h4{color:#fff;font-size:13px;letter-spacing:.1em;margin:0 0 16px;font-weight:600}
+footer a{display:block;font-size:14px;margin:9px 0;transition:color .2s}
+footer a:hover{color:#fff}
+.copy{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:12px}
+
+/* ---------- Shared theme: gradient hexagons, outlined cards, colour rule ---------- */
+.hexb{
+  width:54px;height:60px;flex:none;display:grid;place-items:center;position:relative;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(180deg,var(--g1),var(--g2));
+}
+.hexb::before{content:"";position:absolute;inset:4px;background:#fff;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.hexb b{position:relative;font-family:Outfit;font-size:17px;font-weight:700;color:#3b3b44}
+.sstep{
+  align-items:center;border:1.5px solid transparent;border-radius:22px;
+  background:linear-gradient(rgba(255,255,255,.93),rgba(255,255,255,.93)) padding-box,linear-gradient(135deg,#4a4a52 0%,#9a9aa3 40%,#e3e3e8 75%) border-box;
+}
+.ai .rule{margin-top:34px}
+header::before,footer::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#17c3b8,#ffd23f,#b57be0,#ff9a2f,#ff5a5f,#1f7fd1);z-index:2}
+footer{position:relative}
+
+/* Platform section in the white theme */
+.sky{background:linear-gradient(180deg,#f6f4ff 0%,#fff 100%);color:var(--ink)}
+.sky .arc{background:radial-gradient(circle at 50% 100%,rgba(143,123,234,.14),rgba(143,123,234,.04) 60%,transparent 76%)}
+.sky .arc::after{border-color:rgba(143,123,234,.5)}
+.sky-badge{background:var(--soft);color:var(--violet-d);box-shadow:none;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.sky-badge i{background:linear-gradient(135deg,#17c3b8,#8a6fe8);box-shadow:none}
+.sky h2{font-family:Outfit,Inter,sans-serif;font-weight:500;color:var(--ink);font-size:clamp(34px,4.8vw,60px);line-height:1.08;letter-spacing:-.03em}
+.sky h2 em{font-style:normal;background:linear-gradient(90deg,#8f7bea,#ff4f9a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sky-intro{color:var(--muted);font-weight:400}
+.pbtn{border-radius:12px}
+.pbtn.solid{background:#000;color:#fff;box-shadow:none}
+.pbtn.solid:hover{box-shadow:0 12px 28px rgba(60,40,150,.28)}
+.pbtn.line{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.pbtn.line:hover{background:var(--soft)}
+.pbtn.line svg{stroke:var(--ink)}.pbtn.line svg path{fill:var(--ink)}
+.gcard{
+  border:1.5px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#4a4a52 0%,#9a9aa3 40%,#e3e3e8 75%) border-box;
+  box-shadow:0 26px 50px rgba(91,67,201,.14);
+}
+.g-chart .live{stroke:#6a4fe0}
+.g-chart circle{stroke:#6a4fe0}
+.g-track,.g-sub em{color:#6a4fe0}.g-track i{background:#6a4fe0}
+.sstep{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#4a4a52 0%,#9a9aa3 40%,#e3e3e8 75%) border-box;backdrop-filter:none;box-shadow:0 14px 34px rgba(91,67,201,.08)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1020px){
+  .nav-links{display:none}
+  .coin-wrap{--k:.72}
+  .mod-layout{grid-template-columns:1fr;gap:40px}.mod-head{position:static}
+  .ai-grid{grid-template-columns:1fr;gap:48px}
+  .sky-steps{grid-template-columns:1fr}
+  .pillars{grid-template-columns:repeat(2,1fr)}
+  .pillar{min-height:400px}
+}
+@media(max-width:680px){
+  section{padding:76px 0}
+  .container{width:calc(100% - 32px)}
+  .nav-right a:first-child{display:none}
+  .hero{min-height:860px}
+  .hero-text{padding-top:130px}
+  .hero h1{font-size:36px}
+  .coin-wrap{--k:.5}
+  .c-disc{left:-4%;top:3%}
+  .c-violet{right:-2%;top:56%}
+  .c-gold{left:6%;top:60%}
+  .c-blush{left:46%;top:66%}
+  .c-pink{left:30%;top:76%}
+  .c-small{display:none}
+  .ribbon{height:54.9%}
+  .pillars{grid-template-columns:1fr}
+  .pillar{min-height:auto}
+  .pillar h3{margin-top:32px}.pillar p{margin-top:22px}
+  .mod-grid{grid-template-columns:1fr;gap:56px}
+  .sky{padding:90px 0 100px}.sky .arc{width:820px;height:820px;margin-left:-410px;top:-420px}
+  .sky-intro{font-size:16px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .copy{flex-direction:column;gap:8px}
+  .cta-coin-l,.cta-coin-r{display:none}
+}
+@media(max-width:1020px){
+  .ai{display:block;min-height:0}
+  .ai-bg{right:0;left:0;top:0;width:100%;height:480px;margin:0;border-radius:0 0 50% 50% / 0 0 70px 70px}
+  .ai-bg::before{left:10%;top:25%}
+  .ai-grid{grid-template-columns:1fr;gap:96px;padding:80px 0 90px}
+  .feats{padding-left:0}
+  .feat:nth-child(2){margin-left:0}
+  .cube-a{--s:110px;left:auto;right:8%;bottom:auto;top:360px}
+  .cube-b{display:none}
+}
+@media(max-width:680px){.cube-a{display:none}}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rise,.reveal,.coin-wrap{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- shared icon symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-rupee" viewBox="0 0 24 24"><g fill="none" stroke="var(--ic)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5h12.5M6 9.5h12.5M6.5 4.5c6.5 0 8.5 2 8.5 5s-2.600 5-8.500 5l8 6.500"/></g></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="var(--ic)"><rect x="3" y="12" width="4.800" height="8.500" rx="1.400"/><rect x="9.600" y="3.500" width="4.800" height="17" rx="1.400"/><rect x="16.200" y="8" width="4.800" height="12.500" rx="1.400"/></g></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><g stroke="var(--ic)" stroke-width="2.100" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3.500 7.500 12 12l8.500-4.500z" fill="var(--ic)" fill-opacity=".38"/><path d="M3.500 7.500v9L12 21l8.500-4.500v-9M12 12v9" fill="none"/></g></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><g stroke="var(--ic)" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 4h3.200l2.400 11.200c.1.600.7 1 1.300 1h8.300c.6 0 1.100-.4 1.300-1L20.900 8H6.400" fill="none"/><circle cx="9.800" cy="20" r="1.700" fill="var(--ic)"/><circle cx="17.200" cy="20" r="1.700" fill="var(--ic)"/></g></symbol>
+    <symbol id="i-o" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#fff"/><image href="mark.png" x="3.600" y="3.600" width="16.800" height="16.800"/></symbol>
+  </defs>
+</svg>
+
+<header id="top">
+  <div class="container nav">
+    <a href="#" class="brand" aria-label="Optiva ERP home"><img src="logo.png" alt="Optiva ERP" width="1000" height="220"></a>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#platform">Platform</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#industries">Industries</a>
+      <a href="#ai">AI</a>
+    </nav>
+    <div class="nav-right">
+      <a href="login.html">Log in</a>
+      <a href="signup.html" class="pill">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero" style="padding:0">
+
+  <svg class="ribbon" viewBox="0 0 1440 640" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="rb" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#c9c3f5"/>
+        <stop offset=".35" stop-color="#eeebfd"/>
+        <stop offset=".55" stop-color="#a7a1de"/>
+        <stop offset=".8" stop-color="#cfcaf6"/>
+        <stop offset="1" stop-color="#9992d6"/>
+      </linearGradient>
+      <pattern id="dots" width="5" height="5" patternUnits="userSpaceOnUse">
+        <circle cx="1.2" cy="1.2" r=".9" fill="#7b74c0" opacity=".55"/>
+      </pattern>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+        <stop offset="1" stop-color="#fff" stop-opacity=".55"/>
+      </linearGradient>
+    </defs>
+    <g class="sheen">
+      <path id="ribbonShape" d="M0,250 C260,190 470,460 760,500 C1040,540 1220,300 1440,70 L1440,200 C1230,420 1040,640 760,620 C460,596 250,330 0,360 Z" fill="url(#rb)"/>
+      <path d="M0,250 C260,190 470,460 760,500 C1040,540 1220,300 1440,70 L1440,200 C1230,420 1040,640 760,620 C460,596 250,330 0,360 Z" fill="url(#dots)" opacity=".6"/>
+      <path d="M0,250 C260,190 470,460 760,500 C1040,540 1220,300 1440,70 L1440,200 C1230,420 1040,640 760,620 C460,596 250,330 0,360 Z" fill="url(#fade)"/>
+      <path d="M0,250 C260,190 470,460 760,500 C1040,540 1220,300 1440,70" fill="none" stroke="#6f69ad" stroke-width="3"/>
+      <path d="M0,360 C250,330 460,596 760,620 C1040,640 1230,420 1440,200" fill="none" stroke="#8f89c9" stroke-width="2" opacity=".7"/>
+    </g>
+  </svg>
+
+  <div class="scene" id="scene">
+    <div class="coin-wrap c-disc"   data-depth="0.05" data-amp="10" data-tilt="62"><div class="coin t-glass"   data-t="20"></div></div>
+    <div class="coin-wrap c-violet" data-phys data-depth="0.12" data-amp="14" data-tilt="-22"><div class="coin t-violet" data-t="22" data-icon="i-o"></div></div>
+    <div class="coin-wrap c-gold" data-phys   data-depth="0.08" data-amp="12" data-tilt="18"><div class="coin t-gold"   data-t="20" data-icon="i-rupee"></div></div>
+    <div class="coin-wrap c-blush" data-phys  data-depth="0.15" data-amp="12" data-tilt="-14"><div class="coin t-blush"  data-t="20" data-icon="i-box"></div></div>
+    <div class="coin-wrap c-pink" data-phys   data-depth="0.10" data-amp="16" data-tilt="22"><div class="coin t-pink"   data-t="20" data-icon="i-chart"></div></div>
+    <div class="coin-wrap c-small" data-phys  data-depth="0.04" data-amp="8"  data-tilt="30"><div class="coin t-gold"   data-t="16" data-icon="i-cart"></div></div>
+  </div>
+
+  <div class="hero-text">
+    <h1 class="rise d1">A new era of<br>business management</h1>
+    <p class="rise d2">The world's most connected ERP to help you run finance, sales, inventory and people — in one platform.</p>
+    <a href="#contact" class="btn rise d3">Request a demo</a>
+  </div>
+</section>
+
+<!-- ================= MODULES ================= -->
+<section class="modules" id="solutions">
+  <div class="container mod-layout">
+    <div class="mod-head reveal">
+      <span class="label">The Optiva platform</span>
+      <h2>Connected business functions. One source of truth.</h2>
+      <p class="intro">Replace disconnected systems and spreadsheets with a common platform for managing your core business processes.</p>
+      <div class="rule"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+    </div>
+
+    <div class="mod-grid">
+        <article class="mcard reveal" style="--g1:#2fd0c0;--g2:#ffd23f">
+          <span class="hex"><b>01</b></span>
+          <h3>Finance &amp; Accounting</h3>
+          <p>General ledger, invoicing, expenses, payments, receivables, tax and financial reporting.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#ff5a5f;--g2:#ffc93c">
+          <span class="hex"><b>02</b></span>
+          <h3>Sales &amp; CRM</h3>
+          <p>Manage customers, leads, opportunities, quotations, orders and sales activities.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#8a3fd1;--g2:#1fc8c0">
+          <span class="hex"><b>03</b></span>
+          <h3>Procurement</h3>
+          <p>Manage suppliers, purchase requests, purchase orders, approvals and purchasing cycles.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#1f7fd1;--g2:#c07be0">
+          <span class="hex"><b>04</b></span>
+          <h3>Inventory</h3>
+          <p>Track products, warehouses, stock movements, batches, serial numbers and replenishment.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#ffd01f;--g2:#ff9a2f">
+          <span class="hex"><b>05</b></span>
+          <h3>Human Resources</h3>
+          <p>Employee records, attendance, leave, payroll, performance and workforce administration.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#2fd0c0;--g2:#ff5a5f">
+          <span class="hex"><b>06</b></span>
+          <h3>Operations</h3>
+          <p>Coordinate projects, tasks, approvals and operational processes across teams.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#ff6b9a;--g2:#8f7bea">
+          <span class="hex"><b>07</b></span>
+          <h3>Customer Service</h3>
+          <p>Manage service requests, support tickets, SLAs, conversations and customer history.</p>
+        </article>
+        <article class="mcard reveal" style="--g1:#3fbf8f;--g2:#4fb0e8">
+          <span class="hex"><b>08</b></span>
+          <h3>Analytics</h3>
+          <p>Monitor KPIs, performance, trends, financial results and operational activity.</p>
+        </article>
+    </div>
+  </div>
+</section>
+<!-- ================= PLATFORM ================= -->
+<section class="platform sky" id="platform">
+  
+  <div class="arc" aria-hidden="true"></div>
+
+  <div class="container sky-inner">
+    <span class="sky-badge reveal"><i></i>Built as one system <b>›</b></span>
+    <h2 class="reveal"><em>Business processes</em><br>that work <em>together.</em></h2>
+    <p class="sky-intro reveal">Every Optiva module works from a shared business model, so information moves naturally from one process to the next.</p>
+    <div class="rule" style="justify-content:center;margin-top:30px"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+    <div class="sky-cta reveal">
+      <a href="#contact" class="pbtn solid">Request a demo</a>
+      <a href="#solutions" class="pbtn line"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="1.4"><circle cx="9" cy="9" r="7.5"/><path d="M7.5 6l4 3-4 3z" fill="#fff"/></svg>Explore the modules</a>
+    </div>
+
+    <div class="dash reveal">
+      <div class="gcard g-main">
+        <div class="g-top"><span>▣ This month</span><svg viewBox="0 0 16 16"><path d="M3 13V8M8 13V3M13 13v-7"/></svg></div>
+        <div class="g-body">
+          <div>
+            <div class="g-big">₹24.8M</div>
+            <div class="g-sub">Total revenue <em>+18.4%</em></div>
+            <div class="g-track"><i></i>On track</div>
+          </div>
+          <div class="g-chart">
+            <svg viewBox="0 0 200 80">
+              <path class="base" d="M0,40 C20,36 35,18 62,22 S98,48 118,42 S152,16 172,22 S192,30 200,26"/>
+              <path class="live" pathLength="1" d="M0,54 C20,48 30,64 55,58 S90,36 110,44 S142,64 166,54 S190,42 200,40"/>
+              <g transform="translate(78,6)"><rect width="34" height="14" rx="4" fill="#0e1330"/><text x="17" y="10" text-anchor="middle" fill="#fff" font-size="7" font-family="Inter">₹3.2M</text></g>
+              <circle cx="98" cy="40" r="3" fill="#fff" stroke="#1a62ff" stroke-width="1.6"/>
+            </svg>
+            <div class="g-months"><span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="g-row">
+        <div class="gcard g-small">
+          <h4>Receivables status</h4>
+          <div class="g-money">₹3.2M <em>-7.8%</em></div>
+          <div class="g-date">Updated today, 19:59</div>
+          <svg class="g-spark" viewBox="0 0 200 50" preserveAspectRatio="none">
+            <defs><linearGradient id="sp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7bea" stop-opacity=".45"/><stop offset="1" stop-color="#8f7bea" stop-opacity=".04"/></linearGradient></defs>
+            <polygon points="0,50 0.0,38 6.9,30 13.8,36 20.7,22 27.6,34 34.5,28 41.4,40 48.3,24 55.2,32 62.1,18 69.0,30 75.9,26 82.8,36 89.7,20 96.6,28 103.4,34 110.3,16 117.2,30 124.1,24 131.0,38 137.9,28 144.8,34 151.7,26 158.6,32 165.5,22 172.4,30 179.3,26 186.2,34 193.1,28 200.0,30 200,50" fill="url(#sp)"/>
+            <polyline points="0.0,38 6.9,30 13.8,36 20.7,22 27.6,34 34.5,28 41.4,40 48.3,24 55.2,32 62.1,18 69.0,30 75.9,26 82.8,36 89.7,20 96.6,28 103.4,34 110.3,16 117.2,30 124.1,24 131.0,38 137.9,28 144.8,34 151.7,26 158.6,32 165.5,22 172.4,30 179.3,26 186.2,34 193.1,28 200.0,30" fill="none" stroke="#8f7bea" stroke-width="1.2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="gcard g-small">
+          <h4>Order fulfilment</h4>
+          <div class="g-donut">
+            <div class="g-legend"><span style="color:#ffab1f">Pending</span><span style="color:#2fd0c0">In transit</span><span style="color:#8a6fe8">Delivered</span></div>
+            <svg class="dn" viewBox="0 0 100 100">
+              <circle class="a" cx="50" cy="50" r="38" stroke="#ffab1f" pathLength="100" style="stroke-dashoffset:0"/>
+              <circle class="b" cx="50" cy="50" r="38" stroke="#2fd0c0" pathLength="100" style="stroke-dashoffset:-30"/>
+              <circle class="c" cx="50" cy="50" r="38" stroke="#8a6fe8" pathLength="100" style="stroke-dashoffset:-62"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sky-steps">
+      <div class="sstep reveal"><span class="hexb" style="--g1:#2fd0c0;--g2:#ffd23f"><b>01</b></span><div><h4>Shared business data</h4><p>Customers, products, suppliers and financial records remain connected.</p></div></div>
+      <div class="sstep reveal"><span class="hexb" style="--g1:#ff5a5f;--g2:#ffc93c"><b>02</b></span><div><h4>Process continuity</h4><p>Sales, purchasing, inventory and finance follow one operational flow.</p></div></div>
+      <div class="sstep reveal"><span class="hexb" style="--g1:#8a3fd1;--g2:#1fc8c0"><b>03</b></span><div><h4>Governed access</h4><p>Roles, approvals and permissions keep important actions controlled.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI ================= -->
+<section class="ai" id="ai">
+  <div class="ai-bg" aria-hidden="true"></div>
+  <div class="ai-glow" aria-hidden="true"></div>
+  <div class="cube-wrap cube-a" aria-hidden="true"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="cube-wrap cube-b" aria-hidden="true"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="container ai-grid">
+    <div class="reveal">
+      <div class="ai-kicker">AI &amp; automation</div>
+      <h2>Intelligence where your teams already work.</h2>
+      <div class="rule"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+      <p class="ai-copy">Optiva adds an intelligent layer to everyday processes, helping teams find information, understand performance and automate approved actions.</p>
+    </div>
+    <div class="feats">
+      <div class="feat reveal">
+        <span class="orb" style="--g1:#2fd0c0;--g2:#ffd23f"><svg viewBox="0 0 48 48"><path d="M7 9h26a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H21l-8 7v-7H7a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3z"/><path d="M12 24l5-6 5 4 7-8"/></svg></span>
+        <div><h4>Natural-language analytics</h4><p>Ask questions about business performance in everyday language and get answers from live data.</p></div>
+      </div>
+      <div class="feat reveal">
+        <span class="orb" style="--g1:#ff5a5f;--g2:#ffc93c"><svg viewBox="0 0 48 48"><circle cx="10" cy="12" r="5"/><circle cx="38" cy="24" r="5"/><circle cx="10" cy="38" r="5"/><path d="M15 13c10 0 10 11 18 11M15 37c10 0 10-11 18-11"/></svg></span>
+        <div><h4>Workflow automation</h4><p>Connect triggers, conditions, approvals and actions across departments without manual hand-offs.</p></div>
+      </div>
+      <div class="feat reveal">
+        <span class="orb" style="--g1:#8a3fd1;--g2:#1fc8c0"><svg viewBox="0 0 48 48"><rect x="9" y="15" width="30" height="24" rx="7"/><path d="M24 15V8"/><circle cx="24" cy="6" r="2.5"/><circle cx="18" cy="26" r="2.5"/><circle cx="30" cy="26" r="2.5"/><path d="M18 33h12M4 25v6M44 25v6"/></svg></span>
+        <div><h4>Business agents</h4><p>Deploy controlled AI assistants for finance, sales, support and operations, always within permissions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INDUSTRIES ================= -->
+<section id="industries">
+  <div class="container">
+    <div class="center reveal">
+      <span class="label">Industry solutions</span>
+      <h2>Designed for different ways of doing business.</h2>
+      <p class="intro">Configure the platform around your processes, teams and operating model.</p>
+      <div class="rule" style="justify-content:center"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal active" style="--g1:#2fd0c0;--g2:#ffd23f" tabindex="0">
+        <div class="tab"><b>Manufacturing</b><i><svg viewBox="0 0 24 24"><path d="M3 21V10l6 3V10l6 3V6h3l3 2v13z"/><path d="M7 17h2M12 17h2M17 17h1"/></svg></i></div>
+        <h3>Produce</h3>
+        <p>Production, inventory, procurement and operational control, from raw materials to finished goods.</p>
+      </article>
+      <article class="pillar revealNone" style="--g1:#ff5a5f;--g2:#ffc93c" tabindex="0">
+        <div class="tab"><b>Retail</b><i><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></i></div>
+        <h3>Sell</h3>
+        <p>Sales, inventory, purchasing, customers and finance connected across every store and channel.</p>
+      </article>
+      <article class="pillar revealNone" style="--g1:#8a3fd1;--g2:#1fc8c0" tabindex="0">
+        <div class="tab"><b>Distribution</b><i><svg viewBox="0 0 24 24"><path d="M2 6h11v10H2zM13 9h4l4 3v4h-8z"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></i></div>
+        <h3>Deliver</h3>
+        <p>Orders, warehouses, suppliers and fulfilment moving together from stock to doorstep.</p>
+      </article>
+      <article class="pillar revealNone" style="--g1:#1f7fd1;--g2:#c07be0" tabindex="0">
+        <div class="tab"><b>Professional Services</b><i><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M3 13h18"/></svg></i></div>
+        <h3>Bill</h3>
+        <p>Projects, people, billing, customers and operations kept in a single working flow.</p>
+      </article>
+      <article class="pillar revealNone" style="--g1:#ffd01f;--g2:#ff9a2f" tabindex="0">
+        <div class="tab"><b>Growing Enterprises</b><i><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></i></div>
+        <h3>Scale</h3>
+        <p>A connected foundation for scaling business operations as your teams and markets grow.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="coin-wrap cta-coin-l" data-amp="10" data-tilt="20"><div class="coin t-gold" data-t="16" data-icon="i-rupee"></div></div>
+      <div class="coin-wrap cta-coin-r" data-amp="12" data-tilt="-20"><div class="coin t-pink" data-t="18" data-icon="i-chart"></div></div>
+      <span class="label" style="background:rgba(255,255,255,.14);color:#e5defe">Optiva ERP · by Agentosys</span>
+      <h2>Bring your business together.</h2>
+      <div class="rule" style="justify-content:center;margin:26px 0 0"><i style="background:#17c3b8"></i><i style="background:#ffd23f"></i><i style="background:#b57be0"></i><i style="background:#ff9a2f"></i><i style="background:#ff5a5f"></i><i style="background:#1f7fd1"></i></div>
+      <p class="intro">Talk to our team about building an ERP environment around your organization's needs.</p>
+      <div class="cta-actions">
+        <a class="btn" href="mailto:hello@agentosys.in">Talk to an Optiva expert</a>
+        <a class="btn ghost" href="#platform">Explore the platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div>
+        <a href="#" class="brand" aria-label="Optiva ERP home"><img src="logo.png" alt="Optiva ERP" width="1000" height="220"></a>
+        <p>Enterprise resource planning designed to connect the way modern businesses operate.</p>
+      </div>
+      <div><h4>PLATFORM</h4><a href="#solutions">Finance</a><a href="#solutions">Sales &amp; CRM</a><a href="#solutions">Inventory</a><a href="#solutions">Procurement</a></div>
+      <div><h4>SOLUTIONS</h4><a href="#industries">Manufacturing</a><a href="#industries">Retail</a><a href="#industries">Distribution</a><a href="#industries">Services</a></div>
+      <div><h4>COMPANY</h4><a href="#">About Agentosys</a><a href="#">Security</a><a href="#">Documentation</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="copy"><span>© 2026 Agentosys. Optiva ERP.</span><span>Privacy · Terms · Security</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- build 3D coins: front face, back face and stacked edge slices ---- */
+  document.querySelectorAll('.coin').forEach(coin => {
+    const t = +coin.dataset.t || 18, n = 14, icon = coin.dataset.icon;
+    let html = '';
+    for (let i = 0; i < n; i++) {
+      const z = (-t / 2 + (t * i) / (n - 1)).toFixed(2);
+      html += `<div class="slice" style="transform:translateZ(${z}px)"></div>`;
+    }
+    html += `<div class="face front" style="transform:translateZ(${t / 2 + .5}px)">${icon ? `<svg><use href="#${icon}"/></svg>` : ''}</div>`;
+    html += `<div class="face back" style="transform:rotateY(180deg) translateZ(${t / 2 + .5}px)"></div>`;
+    coin.innerHTML = html;
+  });
+
+  /* ---- coin motion: float + wobble + mouse parallax + scroll parallax ---- */
+  const wraps = [...document.querySelectorAll('.coin-wrap')].filter(w => reduce || !w.hasAttribute('data-phys')).map((w, i) => ({
+    w, coin: w.querySelector('.coin'),
+    amp: +w.dataset.amp || 10, tilt: +w.dataset.tilt || 0,
+    depth: +w.dataset.depth || 0, phase: i * 1.7, speed: .55 + (i % 3) * .15,
+    inHero: !!w.closest('.hero')
+  }));
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  addEventListener('pointermove', e => {
+    tx = (e.clientX / innerWidth - .5) * 2;
+    ty = (e.clientY / innerHeight - .5) * 2;
+  });
+  const hero = document.getElementById('hero');
+
+  function frame(ms) {
+    const t = ms / 1000;
+    mx += (tx - mx) * .06; my += (ty - my) * .06;
+    const sy = Math.min(scrollY, hero.offsetHeight);
+    for (const c of wraps) {
+      const bob = reduce ? 0 : Math.sin(t * c.speed + c.phase) * c.amp;
+      const px = mx * c.depth * 120, py = my * c.depth * 80;
+      const par = c.inHero ? -sy * c.depth * 1.4 : 0;
+      c.w.style.transform = `translate3d(${px}px,${bob + py + par}px,0)`;
+      const ry = reduce ? 0 : Math.sin(t * c.speed * .8 + c.phase) * 28 + mx * 14;
+      const rx = reduce ? 0 : Math.cos(t * c.speed * .7 + c.phase) * 14 - my * 10;
+      const spin = c.inHero ? sy * .08 * (c.depth * 10) : 0;
+      c.coin.style.transform = `rotateX(${c.tilt + rx}deg) rotateY(${ry + spin}deg) rotateZ(${c.tilt * -.25}deg)`;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+
+  /* ---- physics coins: fall, land, roll the ramp, launch, jump, repeat ---- */
+  if (!reduce) (() => {
+    const ribbon = hero.querySelector('.ribbon');
+    const STEP = 1 / 180;
+    const coins = [...document.querySelectorAll('.coin-wrap[data-phys]')].map((w, i) => {
+      w.classList.add('phys');
+      return {
+        w, coin: w.querySelector('.coin'), r: 0, state: 'wait', timer: .35 + i * 1.05 + Math.random() * .5,
+        x: 0, y: 0, vx: 0, vy: 0, s: 0, v: 0, roll: 0, om: 0, age: 0, q: 0, qv: 0, na: 0,
+        tx: 0, ty: 0, ph: Math.random() * 6.28, seam: [false, false], launched: false
+      };
+    });
+    if (!coins.length) return;
+
+    let W, H, SG, SR, N, X, Y, L, A, K, total, crestX, sValley, sLaunch, seamS, T = 0, lastSpawn = -9;
+    let cx, cy, ca, ck, ps, textL = 0;
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+    /* sample the ramp's top edge in screen pixels */
+    function build() {
+      const hr = hero.getBoundingClientRect(), rr = ribbon.getBoundingClientRect();
+      W = hr.width; H = hr.height;
+      SG = clamp(H / 900, .6, 1.2); SR = clamp(W / 1440, .4, 1);
+      const fx = rr.width / 1440, fy = rr.height / 640, ox = rr.left - hr.left, oy = rr.top - hr.top;
+      const segs = [[[0, 250], [260, 190], [470, 460], [760, 500]], [[760, 500], [1040, 540], [1220, 300], [1440, 70]]];
+      const px = [], py = [];
+      segs.forEach((g, si) => {
+        for (let i = si ? 1 : 0; i <= 200; i++) {
+          const t = i / 200, u = 1 - t;
+          const b = (k) => u * u * u * g[0][k] + 3 * u * u * t * g[1][k] + 3 * u * t * t * g[2][k] + t * t * t * g[3][k];
+          px.push(ox + b(0) * fx); py.push(oy + b(1) * fy);
+        }
+      });
+      N = px.length; X = Float64Array.from(px); Y = Float64Array.from(py);
+      L = new Float64Array(N); A = new Float64Array(N); K = new Float64Array(N);
+      for (let i = 1; i < N; i++) L[i] = L[i - 1] + Math.hypot(X[i] - X[i - 1], Y[i] - Y[i - 1]);
+      for (let i = 0; i < N; i++) {
+        const a0 = Math.max(0, i - 4), a1 = Math.min(N - 1, i + 4);
+        A[i] = Math.atan2(Y[a1] - Y[a0], X[a1] - X[a0]);
+      }
+      for (let i = 0; i < N; i++) {
+        const a0 = Math.max(0, i - 10), a1 = Math.min(N - 1, i + 10);
+        K[i] = -(A[a1] - A[a0]) / (L[a1] - L[a0]);   // > 0 in a valley (concave side up)
+      }
+      total = L[N - 1];
+      let m = 0;
+      for (let i = 0; i < N && X[i] < W * .35; i++) if (Y[i] < Y[m]) m = i;
+      crestX = X[m];
+      sValley = sOfX(760 * fx + ox);
+      seamS = [sOfX(600 * fx + ox), sOfX(960 * fx + ox)];
+      sLaunch = sOfX(1120 * fx + ox);
+      const rg = document.createRange(); rg.selectNodeContents(hero.querySelector('h1'));
+      textL = rg.getBoundingClientRect().left - hr.left;
+      coins.forEach(c => c.r = c.w.offsetWidth / 2);
+    }
+    function at(s) {
+      s = clamp(s, 0, total);
+      let lo = 0, hi = N - 1;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (L[m] <= s) lo = m; else hi = m; }
+      const f = (s - L[lo]) / ((L[hi] - L[lo]) || 1);
+      cx = X[lo] + (X[hi] - X[lo]) * f; cy = Y[lo] + (Y[hi] - Y[lo]) * f;
+      ca = A[lo] + (A[hi] - A[lo]) * f; ck = K[lo] + (K[hi] - K[lo]) * f;
+    }
+    function sOfX(x) {
+      if (x <= X[0]) return 0;
+      let lo = 0, hi = N - 1;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (X[m] <= x) lo = m; else hi = m; }
+      return L[lo] + (L[hi] - L[lo]) * ((x - X[lo]) / ((X[hi] - X[lo]) || 1));
+    }
+    /* signed distance of a point above the ramp (nearest-point projection) */
+    function project(px, py) {
+      let s = sOfX(px);
+      for (let k = 0; k < 3; k++) {
+        at(s);
+        s = clamp(s + (px - cx) * Math.cos(ca) + (py - cy) * Math.sin(ca), 0, total);
+      }
+      at(s); ps = s;
+      return (px - cx) * Math.sin(ca) - (py - cy) * Math.cos(ca);
+    }
+
+    const G = () => 2300 * SG;
+
+    function trySpawn(c) {
+      if (T - lastSpawn < 1 + (1 - SR) * 1.2) return;
+      const xmin = Math.max(crestX + c.r * .9 + 20, W * .12);
+      const xmax = Math.max(xmin + 40, Math.min(W * .4, textL - c.r - 12));   // keep falling coins clear of the headline
+      for (let k = 0; k < 8; k++) {
+        const x = xmin + Math.random() * (xmax - xmin), sl = sOfX(x);
+        let ok = true;
+        for (const o of coins) {
+          if (o === c || o.state === 'wait') continue;
+          const gap = (c.r + o.r) * 1.7;
+          if (o.state === 'rail' && Math.abs(o.s - sl) < gap) ok = false;
+          if (o.state === 'air' && !o.launched && o.age < 1.2 && Math.abs(o.x - x) < gap) ok = false;
+        }
+        if (!ok) continue;
+        c.state = 'air'; c.x = x; c.y = -c.r * 1.3;
+        c.vx = (Math.random() - .5) * 50; c.vy = 60 + Math.random() * 120;
+        c.age = 0; c.launched = false; c.free = false; c.seam = [false, false]; c.q = c.qv = 0;
+        c.om = (Math.random() - .5) * 5;
+        c.tx = (Math.random() < .5 ? -1 : 1) * (40 + Math.random() * 30);
+        c.ty = (Math.random() < .5 ? -1 : 1) * (35 + Math.random() * 30);
+        lastSpawn = T;
+        return;
+      }
+    }
+
+    function toAir(c, v, lift) {
+      at(c.s);
+      const sa = Math.sin(ca), co = Math.cos(ca);
+      c.x = cx + sa * c.r; c.y = cy - co * c.r;
+      c.vx = co * v + sa * lift; c.vy = sa * v - co * lift;
+      c.na = ca; c.state = 'air';
+    }
+
+    function air(c, dt) {
+      c.vy += G() * dt; c.x += c.vx * dt; c.y += c.vy * dt;
+      c.roll += c.om * dt; c.om *= 1 - .1 * dt;
+      if (!c.free && c.x > X[0] && c.x < X[N - 1]) {
+        const d = project(c.x, c.y);
+        if (d < c.r && d > -c.r * 1.2) {
+          const sa = Math.sin(ca), co = Math.cos(ca);
+          let vn = c.vx * sa - c.vy * co, vt = c.vx * co + c.vy * sa;
+          if (vn < 0) {
+            c.x = cx + sa * c.r; c.y = cy - co * c.r; c.na = ca;
+            if (-vn > 70 * SG) {                                   // bounce with a squash
+              c.qv += 20 * Math.min(-vn / (1100 * SG), 1.1);
+              vn = -vn * .28;
+              vt += (c.om * c.r - vt) * .75;                       // contact friction: slide speed is pulled toward the spin
+              c.om += (vt / c.r - c.om) * .6;
+              c.vx = vt * co + vn * sa; c.vy = vt * sa - vn * co;
+            } else {                                               // settles onto the ramp and starts rolling
+              vt += (c.om * c.r - vt) * .75;
+              c.s = ps; c.v = vt; c.state = 'rail';
+            }
+          }
+        }
+      }
+      if (c.x > W + c.r * 1.5 || c.x < -c.r * 3 || c.y > H + c.r * 2 || c.age > 14) {
+        c.state = 'wait'; c.timer = .6 + Math.random() * 1.2;
+      }
+    }
+
+    function rail(c, dt) {
+      at(c.s);
+      let a = .66 * 1500 * SR * Math.sin(ca) - .8 * c.v;
+      if (c.s > sValley) { const u = clamp((c.s - sValley) / (180 * SR), 0, 1); a += 1250 * SR * u * u * (3 - 2 * u); }
+      c.v = clamp(c.v + a * dt, -1100 * SR, 1100 * SR);
+      c.s += c.v * dt;
+      c.om += (c.v / c.r - c.om) * Math.min(1, 10 * dt);
+      c.roll += c.om * dt;
+      if (c.s >= total) { toAir(c, Math.max(c.v, 380 * SR), 0); c.free = true; return; }   // rolls off the top of the ramp
+      at(c.s); c.na = ca;
+      if (G() * Math.cos(ca) + c.v * c.v * ck < 0) { toAir(c, c.v, 0); return; }   // crest: leaves the surface
+      for (let i = 0; i < 2; i++) {
+        if (!c.seam[i] && c.s >= seamS[i]) {
+          c.seam[i] = true;
+          if (c.v > 120 * SR) { toAir(c, c.v, clamp(.35 * c.v, 80 * SR, 200 * SR)); return; }   // small hop at the curvature change
+        }
+      }
+      if (!c.launched && c.s >= sLaunch && c.v > 150 * SR) {
+        c.launched = true;
+        const v = c.v;
+        toAir(c, 0, 0);
+        c.vx = Math.min(.35 * v, 200 * SR); c.vy = -(.5 * v + 650 * SG);
+        c.tx = (Math.random() < .5 ? -1 : 1) * 28; c.ty = 22; c.age = 0;
+      }
+    }
+
+    function simulate(dt) {
+      T += dt;
+      for (const c of coins) {
+        if (c.state === 'wait') { c.timer -= dt; if (c.timer <= 0) trySpawn(c); }
+        else if (c.state === 'air') air(c, dt);
+        else rail(c, dt);
+        c.qv += (-420 * c.q - 22 * c.qv) * dt; c.q += c.qv * dt;
+        c.age += dt;
+      }
+      /* rail coins can't pass through each other */
+      const rails = coins.filter(c => c.state === 'rail').sort((a, b) => a.s - b.s);
+      for (let i = rails.length - 2; i >= 0; i--) {
+        const back = rails[i], front = rails[i + 1], min = (back.r + front.r) * 1.03;
+        if (front.s - back.s < min) { back.s = front.s - min; if (back.v > front.v) back.v = front.v; }
+      }
+    }
+
+    function render() {
+      for (const c of coins) {
+        if (c.state === 'wait') { c.w.style.transform = 'translate3d(-9999px,0,0)'; continue; }
+        let x = c.x, y = c.y;
+        if (c.state === 'rail') { at(c.s); x = cx + Math.sin(ca) * c.r; y = cy - Math.cos(ca) * c.r; }
+        const sq = clamp(c.q, -.5, 1.1), sx = 1 + .08 * sq, sy = 1 - .16 * sq;
+        c.w.style.transform = `translate3d(${(x - c.r).toFixed(1)}px,${(y - c.r).toFixed(1)}px,0) rotate(${c.na}rad) scale(${sx.toFixed(3)},${sy.toFixed(3)}) rotate(${-c.na}rad)`;
+        const tum = Math.exp(-c.age / .55);
+        const rx = 12 + c.tx * tum + Math.sin(c.age * 2.1 + c.ph) * 2.5;
+        const ry = -22 + c.ty * tum + Math.cos(c.age * 1.7 + c.ph) * 3;
+        c.coin.style.transform = `rotateX(${rx.toFixed(1)}deg) rotateY(${ry.toFixed(1)}deg)`;
+        c.coin.style.setProperty('--roll', (c.roll * 57.2958).toFixed(1) + 'deg');
+      }
+    }
+
+    build();
+    addEventListener('resize', build);
+    addEventListener('load', build);
+    /*FF*/
+    let visible = true, acc = 0, last = performance.now();
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; last = performance.now(); }).observe(hero);
+    (function loop(now) {
+      requestAnimationFrame(loop);
+      const dt = Math.min((now - last) / 1000, .05); last = now;
+      if (!visible) return;
+      acc += dt;
+      while (acc >= STEP) { simulate(STEP); acc -= STEP; }
+      render();
+    })(performance.now());
+  })();
+
+  /* ---- sticky header style ---- */
+  const header = document.querySelector('header');
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 20);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* ---- scroll reveal (staggered inside grids) ---- */
+  document.querySelectorAll('.mod-grid, .pillars').forEach(g =>
+    [...g.children].forEach((el, i) => el.style.transitionDelay = (i % 4) * 90 + 'ms'));
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- industry pillars: hover / focus / tap to highlight ---- */
+  const pillars = [...document.querySelectorAll('.pillar')];
+  const pick = el => pillars.forEach(p => p.classList.toggle('active', p === el));
+  pillars.forEach(p => {
+    p.addEventListener('mouseenter', () => pick(p));
+    p.addEventListener('focus', () => pick(p));
+    p.addEventListener('click', () => pick(p));
+  });
+})();
+</script>
+</body>
+</html>

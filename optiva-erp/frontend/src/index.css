@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas font-sans text-ink;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500/60 ring-offset-1 ring-offset-white;
+  }
+  ::selection {
+    background: #d9d1fa;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-card border border-line bg-white shadow-card;
+  }
+  .btn {
+    @apply inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-lg px-3.5 text-[13px] font-medium transition-colors duration-150;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+  }
+  .btn-secondary {
+    @apply btn border border-line-strong bg-white text-ink hover:bg-brand-50 hover:border-brand-200;
+  }
+  .btn-ghost {
+    @apply btn text-ink-soft hover:bg-brand-50 hover:text-brand-700;
+  }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-brand-50 hover:text-brand-700;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11.5px] font-medium;
+  }
+  .field-select {
+    @apply h-9 rounded-lg border border-line-strong bg-white px-2.5 text-[13px] text-ink-soft transition-colors hover:border-brand-200;
+  }
+  .field-input {
+    @apply h-10 w-full rounded-lg border border-line-strong bg-white px-3 text-[13.5px] text-ink outline-none transition-colors placeholder:text-ink-faint hover:border-brand-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-500/20;
+  }
+  .field-label {
+    @apply mb-1.5 block text-[12px] font-medium text-ink-soft;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d6d6e2 transparent;
+  }
+  .scroll-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+    background: #d6d6e2;
+    border-radius: 6px;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: pop-in 0.14s ease-out;
+}
+@keyframes drawer-in {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.drawer-in {
+  animation: drawer-in 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
